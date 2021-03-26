@@ -25,6 +25,17 @@ stages:
   jobs:
   - job: Build
     displayName: Build
+- task: Maven@3
+  inputs:
+    mavenPomFile: 'pom.xml'
+    options: '-DskipTests'
+    publishJUnitResults: false
+    javaHomeOption: 'JDKVersion'
+    mavenVersionOption: 'Default'
+    mavenAuthenticateFeed: false
+    effectivePomSkip: false
+    sonarQubeRunAnalysis: true
+    sqMavenPluginVersionChoice: 'latest'
     pool:
       vmImage: $(vmImageName)
     steps:
